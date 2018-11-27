@@ -1,4 +1,4 @@
-## NEM Blockchain Explorer (Node.js) ##
+## NEM Blockchain Explorer (Node.js) !!! For The TESTNET !!! ##
 
 The project is a blockchian explorer project which is built on NEM (https://www.nem.io). 
 
@@ -12,7 +12,7 @@ AngularJS, Bootstrap, MongoDB, Node.js
 
 1) install the Node.js on your machine.
 
-2) NIS is started and blocks loading is finished.
+2) NIS is started and blocks loading is finished (please make sure that you are running a TESTNET Node).
 
 3) install MongoDB and start it (it's better to set an account and password).
 

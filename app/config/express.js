@@ -22,7 +22,7 @@ module.exports = () => {
 	require('../routes/node.server.route')(app);
 	require('../routes/mosaic.server.route')(app);
 	require('../routes/namespace.server.route')(app);
-	// require('../routes/supernode.server.route')(app);
+	require('../routes/supernode.server.route')(app);
 	require('../routes/market.server.route')(app);
 	require('../routes/sys.server.route')(app);
 	require('../routes/poll.server.route')(app);

@@ -66,13 +66,12 @@ let init = (server) => {
 						});
 					});
 					// websocket update transactions
-					transactionWS.transaction((height, callback)=>{
+					transactionWS.transactionConnect((height, callback)=>{
 						loadBlocks(height, callback);
 					});
-					transactionWS.unconfirmedTransaction();
-					transactionWS.cleanHistoryUnconfirmedWhenInit();
-					blockWS.block();
-					mosaicWS.mosaic();
+					transactionWS.unconfirmedConnect();
+					blockWS.connect();
+					mosaicWS.connect();
 				});
 			});
 		});
@@ -136,6 +135,7 @@ let loadBlocks = (height, callback) => {
 		data.data.forEach((item, blockIndex) => {
 			let block = item.block;
 			let txes = item.txes;
+			lastBlockHeight = block.height;
 			if(initFinishFlag==true && foundBlockSet.has(block.height))
 				return;
 			if(initFinishFlag==true)
@@ -148,7 +148,6 @@ let loadBlocks = (height, callback) => {
 			txes.forEach((itemTx, index) => {
 				handleTX(itemTx, index, block.height);
 			});
-			lastBlockHeight = block.height;
 		});
 		//recurse to query the next 10 blocks
 		loadBlocks(lastBlockHeight, callback);
@@ -222,7 +221,7 @@ let handleTX = (itemTx, index, height) => {
 		// save or update mosaic
 		saveOrUpdateMosaic(saveTx, tx);
 		// save supernode payout
-		// saveSupernodePayout(saveTx, tx);
+		saveSupernodePayout(saveTx, tx);
 		// save poll
 		savePoll(saveTx, tx);
 		// update the account info which is in DB
